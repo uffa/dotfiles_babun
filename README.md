@@ -35,3 +35,4 @@ Options:
   --welcome
 
   CHANGED FILE
+  CHANGE AGAIN
