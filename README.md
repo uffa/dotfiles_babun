@@ -33,3 +33,5 @@ Options:
   --help
   --version
   --welcome
+
+  CHANGED FILE
