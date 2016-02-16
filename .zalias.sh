@@ -1,0 +1,7 @@
+alias gm="git checkout master"
+alias gp="git checkout prod"
+alias gch="git checkout"
+alias gr="git reset --hard"
+alias gc="git commit -m"
+alias ga="git add"
+alias gs="git status"
