@@ -2,12 +2,13 @@
 	default = matching
 [core]
 	trustctime = false
-	editor = vim
+	editor = nano
 	filemode = false
+	autocrlf = false
 [color]
 	ui = true
 [credential]
-	helper = cache --timeout=3600
+	helper = wincred
 [merge]
 	tool = vimdiff
 [mergetool]

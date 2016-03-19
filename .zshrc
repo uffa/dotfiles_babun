@@ -1,4 +1,6 @@
 # Path to your oh-my-zsh installation.
+# https://github.com/robbyrussell/oh-my-zsh
+# https://github.com/unixorn/awesome-zsh-plugins
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -55,16 +57,61 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"			################################### TESTI
 ## REMOVED
 # git		## throwing errors?
 # history-substring-search
-plugins=(bower cp dircycle dirhistory dirpersist gem git-extras gnu-utils grunt history jump node npm pip systemadmin vagrant wp-cli z)
+### zsh autocompletion plugins:: autopep8 celery tugboat terminitor cpanm meteor mix
+#
+#plugins=(archlinux bower brew brew-cask bundler cp dircycle dirhistory dirpersist extract gem git-extras gnu-utils grunt history jump node npm pip systemadmin vagrant web_search wp-cli yum z)
 
+
+alias aup="antigen update"
+
+source $ZSH/custom/plugins/antigen/antigen.zsh
+antigen use oh-my-zsh
+# antigen bundle archlinux
+antigen bundle bower
+# antigen bundle brew
+# antigen bundle brew-cask
+antigen bundle bundler
+antigen bundle cp
+antigen bundle dircycle
+antigen bundle dirhistory
+antigen bundle dirpersist
+antigen bundle extract
+antigen bundle gem
+antigen bundle git-extras
+antigen bundle gnu-utils
+antigen bundle grunt
+antigen bundle history
+antigen bundle jump
+antigen bundle node
+antigen bundle npm
+antigen bundle pip
+antigen bundle systemadmin
+antigen bundle vagrant
+antigen bundle web-search
+antigen bundle wp-cli
+antigen bundle yum
+antigen bundle z
+
+antigen bundle Tarrasch/zsh-functional
+antigen bundle Tarrasch/zsh-bd
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+# antigen bundle zsh-users/fizsh
+
+# antigen bundle mafredri/zsh-async
+# antigen bundle sindresorhus/pure
+
+antigen apply
 
 ################################ BEGIN AUTOSUGGESTIONS
 
 # Load zsh-syntax-highlighting.
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Load zsh-autosuggestions.
-source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/autosuggestions.zsh
+# source $ZSH/custom/plugins/zsh-autosuggestions/autosuggestions.zsh
 
 
 # # Accept suggestions without leaving insert mode
@@ -76,20 +123,21 @@ source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/autosuggestions.zsh
 ## autosuggest-toggle ## – disable/enable autosuggestions.
 ## autosuggest-execute-suggestion – accept the suggestion and execute it.
 
-bindkey '^T' autosuggest-toggle					# ctrl + T
-bindkey '^f' autosuggest-execute-suggestion		# ctrl + G
+# bindkey '^T' autosuggest-toggle					# ctrl + T
+# bindkey '^f' autosuggest-execute-suggestion		# ctrl + G
 
 ## bindkey "^I"  autosuggest-execute-suggestion	#expand-or-complete
-AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=9' #– suggestion highlight color, default is 'fg=8'.
 # AUTOSUGGESTION_HIGHLIGHT_CURSOR #– highlight word after cursor, or not. Must be integer value 1 or 0, default is 1.
-AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1 #– complete entire suggestion with right arrow. Must be integer value 1 or 0, default is 0 (right arrow completes one letter at a time).
+###ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE
 
 
 ################################ END AUTOSUGGESTIONS
 
+setopt no_beep
+
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -123,28 +171,18 @@ source $ZSH/oh-my-zsh.sh
 eval `dircolors ~/.dir_colors`		# USE dircolors to setup LS_COLORS VAR
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# general
-alias cls="clear"
+export ANTIGEN_HS_MY="C:/Users/uffa/.babun/cygwin/home/uffa/.zsh/MyAntigen.hs"
 
-
-# directory listing
-alias ll="ls -AFlhsiu" #full details, sort alpha
-# alias la="ls -a"
-alias lb="ls -AFlhsiSr" #full details, sort by size, large bottom
-alias lm="ls -AFlhsitr"  #full details, sort by modifation time, recent bottom
-
-
-# CUSTOM HELP, OUTPUT README FILES
-# output the first X lines of the README file, excluding emptly lines
-alias zh="cls;cat ~/.oh-my-zsh/plugins/z/README | grep -m 23 . "
-alias wph="cls;cat ~/.oh-my-zsh/plugins/wp-cli/README.md"
-alias jh="cls;cat ~/.oh-my-zsh/plugins/jump/jump.plugin.zsh | grep -m 8 ."
-alias sysh="cls;cat ~/.oh-my-zsh/plugins/systemadmin/systemadmin.plugin.zsh | grep '\#\|.' "
-
-
-
+#############################################
 # Enable autosuggestions automatically.
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
+# zle-line-init() {
+#     zle autosuggest-start
+# }
+# zle -N zle-line-init
+
+export PRF="/cygdrive/c/Program Files"
+source $HOME/.zalias.sh
+
+# FORCE GIT PATH TO BE THE FIRST IN PATH ORDER
+# :$PRF/Git/mingw64/bin:$PRF/Git/usr/bin /// creates problems with mktemp
+export PATH=$PRF/Git/cmd:$PATH
